@@ -29,9 +29,9 @@ Operators
 The framework has the following operators:
 
 **Mutation**
-- DE/Rand/1
-- DE/Rand/2
-- DE/Target-to-best/1
+- DE/rand/1
+- DE/rand/2
+- DE/current-to-best/1
 
 **Crossover**
 - Single Point Crossover

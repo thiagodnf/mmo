@@ -53,7 +53,7 @@ The available parameters are:
 
 | Parameters   | Description           | Default Value | Recomended Range |
 |--------------|-----------------------|---------------|------------------|
-| N            | Differential Weight   | 0.5           | [0,1]            |
+| F            | Differential Weight   | 0.5           | [0,1]            |
 | CR           | Crossover Probability | 0.8           | [0,1]            |
 | NP           | Population Size       | 100           | >=4              |
 

@@ -35,6 +35,28 @@ The framework has the following operators:
 
 **Crossover**
 - Single Point Crossover
+- DE Binomial Crossover
+- DE Exponential Crossover
+
+Parameters 
+---
+You can define the metaheuristic's parameters according to your problem before execution. For example:
+
+```Java
+Metaheuristic m = new DifferentialEvolution();
+m.addParameter("N", 100);
+```
+
+The available parameters are:
+
+**Differential Evolution**
+
+| Parameters   | Description           | Default Value | Recomended Range |
+|--------------|-----------------------|---------------|------------------|
+| N            | Differential Weight   | 0.5           | [0,1]            |
+| CR           | Crossover Probability | 0.8           | [0,1]            |
+| NP           | Population Size       | 100           | >=4              |
+
 
 Motivation
 ---

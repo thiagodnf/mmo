@@ -1,6 +1,6 @@
 package mmo.metaheuristic;
 
-import mmo.operator.crossover.BinomialCrossover;
+import mmo.operator.crossover.DEBinomialCrossover;
 import mmo.operator.crossover.DECrossover;
 import mmo.operator.mutation.DEMutation;
 import mmo.operator.mutation.DERandTwoMutation;
@@ -23,7 +23,7 @@ public class DifferentialEvolution extends Metaheuristic {
 	
 	public DifferentialEvolution(){
 		this.mutation = new DERandTwoMutation();
-		this.crossover = new BinomialCrossover();
+		this.crossover = new DEBinomialCrossover();
 	}
 
 	@Override

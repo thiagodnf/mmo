@@ -3,15 +3,15 @@ package mmo.operator.crossover;
 import mmo.solution.Solution;
 import mmo.util.PseudoRandom;
 
-public class BinomialCrossover extends DECrossover {
+public class DEBinomialCrossover extends DECrossover {
 
 	protected double cr;
 	
-	public BinomialCrossover(){
+	public DEBinomialCrossover(){
 		this(0.9);
 	}
 	
-	public BinomialCrossover(double cr){
+	public DEBinomialCrossover(double cr){
 		this.cr = cr;
 	}
 	

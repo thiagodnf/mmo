@@ -31,6 +31,7 @@ The framework has the following operators:
 **Mutation**
 - DE/Rand/1
 - DE/Rand/2
+- DE/Target-to-best/1
 
 **Crossover**
 - Single Point Crossover

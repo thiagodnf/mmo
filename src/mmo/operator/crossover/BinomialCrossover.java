@@ -23,8 +23,10 @@ public class BinomialCrossover extends DECrossover {
 
 		Solution trial = (Solution) target.clone();
 
+		int iRand = PseudoRandom.randInt(0, trial.getNumberOfBits() - 1);
+		
 		for (int i = 0; i < target.getNumberOfBits(); i++) {
-			if (PseudoRandom.randDouble() <= cr) {
+			if (PseudoRandom.randDouble() <= cr || i == iRand) {
 				trial.setValue(i, donor.getValue(i));
 			} else {
 				trial.setValue(i, target.getValue(i));

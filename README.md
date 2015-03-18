@@ -55,8 +55,13 @@ The available parameters are:
 |--------------|-----------------------|---------------|------------------|
 | F            | Differential Weight   | 0.5           | [0,1]            |
 | CR           | Crossover Probability | 0.8           | [0,1]            |
-| NP           | Population Size       | 100           | >=4              |
+| NP           | Population Size       | 100           | >= 4             |
 
+**Steepest Ascent Hill-Climbing**
+
+| Parameters     | Description           | Default Value | Recomended Range |
+|----------------|-----------------------|---------------|------------------|
+| desired_tweaks | Desired Tweaks        | 10            | >= 1             |
 
 Motivation
 ---

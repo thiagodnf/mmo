@@ -28,15 +28,23 @@ Operators
 --
 The framework has the following operators:
 
+**Selection**
+- Roulette Wheel
+- Binary Tournament
+
 **Mutation**
 - DE/rand/1
 - DE/rand/2
 - DE/current-to-best/1
 
 **Crossover**
-- Single Point Crossover
-- DE Binomial Crossover
-- DE Exponential Crossover
+- Single Point
+- DE Binomial
+- DE Exponential
+
+**Replacement**
+- Elitism
+- Replace By Offspring
 
 Parameters 
 ---

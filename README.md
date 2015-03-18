@@ -18,10 +18,11 @@ Encoded Problems
 To testing the metaheuristics, the following problems were encoded:
 
 - One Max Problem
+- Knapsack Problem
 - Ackleys Function
 - Two-dimensional Gaussian Function
-- MichalewiczFunction
-- RosenbrockFunction
+- Michalewicz Function
+- Rosenbrock Function
 
 Operators
 --

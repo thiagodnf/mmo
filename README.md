@@ -35,6 +35,7 @@ The framework has the following operators:
 
 **Crossover**
 - Single Point Crossover
+- DE Binomial Crossover
 
 Parameters 
 ---

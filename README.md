@@ -36,6 +36,8 @@ The framework has the following operators:
 - DE/rand/1
 - DE/rand/2
 - DE/current-to-best/1
+- Bit Flip
+- Swap
 
 **Crossover**
 - Single Point

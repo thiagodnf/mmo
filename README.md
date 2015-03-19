@@ -10,8 +10,7 @@ The framework has the following implemented metaheuristics:
 - Hill Climbing
 - Steepest Ascent Hill-Climbing
 - Differential Evolution
-- Genetic Algorithm (Working in progress)
-- Particle Swarm Optimization (Working in progress)
+- Genetic Algorithm
 
 Encoded Problems
 ---
@@ -36,42 +35,68 @@ The framework has the following operators:
 - DE/rand/1
 - DE/rand/2
 - DE/current-to-best/1
-- Bit Flip
-- Swap
+- Bit Flip Mutation
+- Swap Mutation
 
 **Crossover**
-- Single Point
+- Single Point Crossover
 - DE Binomial
 - DE Exponential
 
 **Replacement**
 - Elitism
-- Replace By Offspring
+- Replace All
 
 Parameters 
 ---
-You can define the metaheuristic's parameters according to your problem before execution. For example:
+You can define the metaheuristic's parameters according to your problem before execution. The parameters
+should be defined on operator. For example
 
 ```Java
-Metaheuristic m = new DifferentialEvolution();
-m.addParameter("N", 100);
+Metaheuristic m = new DifferentialEvolution(100);
+// Set Stopping Criteria
+m.setStoppingCriteria(new Iterations(1000));
 ```
 
-The available parameters are:
+where 100 is a population size and 1000 is the max iterations
 
-**Differential Evolution**
+How to use
+---
+A example how to use MMO is:
 
-| Parameters   | Description           | Default Value | Recomended Range |
-|--------------|-----------------------|---------------|------------------|
-| F            | Differential Weight   | 0.5           | [0,1]            |
-| CR           | Crossover Probability | 0.8           | [0,1]            |
-| NP           | Population Size       | 100           | >= 4             |
+```Java
+public class GATest {
 
-**Steepest Ascent Hill-Climbing**
+	public static void main(String[] args) {
+		// Problem
+		KnapsackProblem p = new KnapsackProblem(8);
 
-| Parameters     | Description           | Default Value | Recomended Range |
-|----------------|-----------------------|---------------|------------------|
-| desired_tweaks | Desired Tweaks        | 10            | >= 1             |
+		// Load instance
+		p.setValue(new double[] { 3, 3, 2, 4, 2, 3, 5, 2 });
+		p.setWeight(new double[] { 5, 4, 7, 8, 4, 4, 6, 8 });
+		p.setMaxWeight(25);
+		
+		// Metaheuristic
+		Metaheuristic m = new GeneticAlgorithm(100);
+				
+		// Set Stopping Criteria
+		m.setStoppingCriteria(new Iterations(1000));
+
+		// Run
+		ExecutionStats.execute(m, p).printStats();		
+	}
+}
+```
+
+The result is:
+
+```
+Algorithm: GeneticAlgorithm
+Problem: KnapsackProblem
+Execution time (ms): 423.0
+Best Solution Found: [1, 1, 0, 0, 1, 1, 1, 0]
+Best Value: -16.0
+```
 
 Motivation
 ---

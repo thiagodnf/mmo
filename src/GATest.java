@@ -16,7 +16,6 @@
 
 import mmo.metaheuristic.Metaheuristic;
 import mmo.metaheuristic.population.GeneticAlgorithm;
-import mmo.operator.replacement.ReplaceAllReplacement;
 import mmo.problem.binary.KnapsackProblem;
 import mmo.stoppingcriteria.Iterations;
 import mmo.util.ExecutionStats;
@@ -36,8 +35,6 @@ public class GATest {
 		// Metaheuristic
 		Metaheuristic m = new GeneticAlgorithm(100);
 				
-		m.setReplacementOperator(new ReplaceAllReplacement());
-	
 		// Set Stopping Criteria
 		m.setStoppingCriteria(new Iterations(1000));
 

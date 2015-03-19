@@ -38,8 +38,7 @@
 <li>Hill Climbing</li>
 <li>Steepest Ascent Hill-Climbing</li>
 <li>Differential Evolution</li>
-<li>Genetic Algorithm (Working in progress)</li>
-<li>Particle Swarm Optimization (Working in progress)</li>
+<li>Genetic Algorithm</li>
 </ul>
 
 <h2>
@@ -61,19 +60,85 @@
 
 <p>The framework has the following operators:</p>
 
+<p><strong>Selection</strong></p>
+
+<ul>
+<li>Roulette Wheel</li>
+<li>Binary Tournament</li>
+</ul>
+
 <p><strong>Mutation</strong></p>
 
 <ul>
-<li>DE/Rand/1</li>
-<li>DE/Rand/2</li>
-<li>DE/Target-to-best/1</li>
+<li>DE/rand/1</li>
+<li>DE/rand/2</li>
+<li>DE/current-to-best/1</li>
+<li>Bit Flip Mutation</li>
+<li>Swap Mutation</li>
 </ul>
 
 <p><strong>Crossover</strong></p>
 
 <ul>
 <li>Single Point Crossover</li>
+<li>DE Binomial</li>
+<li>DE Exponential</li>
 </ul>
+
+<p><strong>Replacement</strong></p>
+
+<ul>
+<li>Elitism</li>
+<li>Replace All</li>
+</ul>
+
+<h2>
+<a id="parameters-" class="anchor" href="#parameters-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Parameters </h2>
+
+<p>You can define the metaheuristic's parameters according to your problem before execution. The parameters
+should be defined on operator. For example</p>
+
+<div class="highlight highlight-Java"><pre><span class="pl-stj">Metaheuristic</span> m <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-stj">DifferentialEvolution</span>(<span class="pl-c1">100</span>);
+<span class="pl-c">// Set Stopping Criteria</span>
+m<span class="pl-k">.</span>setStoppingCriteria(<span class="pl-k">new</span> <span class="pl-stj">Iterations</span>(<span class="pl-c1">1000</span>));</pre></div>
+
+<p>where 100 is a population size and 1000 is the max iterations</p>
+
+<h2>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<p>A example how to use MMO is:</p>
+
+<div class="highlight highlight-Java"><pre><span class="pl-s">public</span> <span class="pl-s">class</span> <span class="pl-en">GATest</span> {
+
+    <span class="pl-s">public</span> <span class="pl-s">static</span> <span class="pl-st">void</span> <span class="pl-en">main</span>(<span class="pl-st">String</span>[] <span class="pl-v">args</span>) {
+        <span class="pl-c">// Problem</span>
+        <span class="pl-stj">KnapsackProblem</span> p <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-stj">KnapsackProblem</span>(<span class="pl-c1">8</span>);
+
+        <span class="pl-c">// Load instance</span>
+        p<span class="pl-k">.</span>setValue(<span class="pl-k">new</span> <span class="pl-stj">double</span>[] { <span class="pl-c1">3</span>, <span class="pl-c1">3</span>, <span class="pl-c1">2</span>, <span class="pl-c1">4</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">5</span>, <span class="pl-c1">2</span> });
+        p<span class="pl-k">.</span>setWeight(<span class="pl-k">new</span> <span class="pl-stj">double</span>[] { <span class="pl-c1">5</span>, <span class="pl-c1">4</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">4</span>, <span class="pl-c1">4</span>, <span class="pl-c1">6</span>, <span class="pl-c1">8</span> });
+        p<span class="pl-k">.</span>setMaxWeight(<span class="pl-c1">25</span>);
+
+        <span class="pl-c">// Metaheuristic</span>
+        <span class="pl-stj">Metaheuristic</span> m <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-stj">GeneticAlgorithm</span>(<span class="pl-c1">100</span>);
+
+        <span class="pl-c">// Set Stopping Criteria</span>
+        m<span class="pl-k">.</span>setStoppingCriteria(<span class="pl-k">new</span> <span class="pl-stj">Iterations</span>(<span class="pl-c1">1000</span>));
+
+        <span class="pl-c">// Run</span>
+        <span class="pl-stj">ExecutionStats</span><span class="pl-k">.</span>execute(m, p)<span class="pl-k">.</span>printStats();      
+    }
+}</pre></div>
+
+<p>The result is:</p>
+
+<pre><code>Algorithm: GeneticAlgorithm
+Problem: KnapsackProblem
+Execution time (ms): 423.0
+Best Solution Found: [1, 1, 0, 0, 1, 1, 1, 0]
+Best Value: -16.0
+</code></pre>
 
 <h2>
 <a id="motivation" class="anchor" href="#motivation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Motivation</h2>

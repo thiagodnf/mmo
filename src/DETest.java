@@ -14,12 +14,25 @@
  * limitations under the License.
  */
 
-package mmo.operator.crossover;
+import mmo.metaheuristic.Metaheuristic;
+import mmo.metaheuristic.population.DifferentialEvolution;
+import mmo.problem.Problem;
+import mmo.problem.function.AckleysFunction;
+import mmo.stoppingcriteria.Iterations;
+import mmo.util.ExecutionStats;
 
-import mmo.operator.Operator;
-import mmo.solution.Solution;
+public class DETest {
 
-public abstract class Crossover extends Operator {
-
-	public abstract Solution[] execute(Solution s1, Solution s2);
+	public static void main(String[] args) {
+		Problem p  = new AckleysFunction(2);
+		
+		// Metaheuristic
+		Metaheuristic m = new DifferentialEvolution(100);
+		
+		// Set Stopping Criteria
+		m.setStoppingCriteria(new Iterations(1000));
+				
+		// Run
+		ExecutionStats.execute(m, p).printStats();		
+	}
 }

@@ -14,12 +14,10 @@
  * limitations under the License.
  */
 
-package mmo.operator.crossover;
+package mmo.metaheuristic.single;
 
-import mmo.operator.Operator;
-import mmo.solution.Solution;
+import mmo.metaheuristic.Metaheuristic;
 
-public abstract class Crossover extends Operator {
+public abstract class SingleSolution extends Metaheuristic {
 
-	public abstract Solution[] execute(Solution s1, Solution s2);
 }

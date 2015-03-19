@@ -16,35 +16,40 @@
 
 package mmo.operator.mutation;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import mmo.operator.Operator;
 import mmo.solution.Solution;
+import mmo.util.PseudoRandom;
 
-public abstract class Mutation extends Operator {
-	
+public class BitFlipMutation extends Mutation {
+
+	protected double probability;
+
 	/**
-	 * Generate a list with random numbers
+	 * Create the Bit Flip Mutation
 	 * 
-	 * @param size Max size of list
-	 * @return list with random numbers
+	 * @param probability Probability of Mutation
 	 */
-	protected List<Integer> getRandomPositions(int size) {
-		// Randomize the solutions
-		List<Integer> list = new ArrayList<Integer>();
-
-		for (int i = 0; i < size; i++) {
-			list.add(i);
-		}
-
-		Collections.shuffle(list);
-
-		return list;
+	public BitFlipMutation(double probability) {
+		this.probability = probability;
 	}
 
-	public abstract Solution execute(Solution s);
-	
-	public abstract Solution execute(int targetId, Solution[] population);
+	@Override
+	public Solution execute(Solution s) {
+		for (int i = 0; i < s.getNumberOfBits(); i++) {
+			if (PseudoRandom.randDouble() <= probability) {
+				if ((int) s.getValue(i) == 0) {
+					s.setValue(i, 1);
+				} else {
+					s.setValue(i, 0);
+				}
+			}
+		}
+
+		return s;
+	}
+
+	@Override
+	public Solution execute(int targetId, Solution[] population) {
+		// No use
+		return null;
+	}
 }

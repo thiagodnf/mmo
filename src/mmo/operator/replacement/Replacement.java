@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package mmo.operator.crossover;
+package mmo.operator.replacement;
 
 import mmo.operator.Operator;
 import mmo.solution.Solution;
 
-public abstract class Crossover extends Operator {
-
-	public abstract Solution[] execute(Solution s1, Solution s2);
+public abstract class Replacement extends Operator{
+	
+	public abstract Solution[] execute(Solution[] population, Solution[] offspring);
 }

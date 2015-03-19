@@ -21,19 +21,17 @@ import java.util.List;
 import mmo.solution.Solution;
 
 /**
- * DE/rand/p Mutation's Class
+ * DE/Target-to-best/1 Mutation's Class
  * 
  * @author Thiago Nascimento
  * @since 2017-03-17
  * @version 1.0
  */
-public class DERandOneMutation extends Mutation {
+public class DECurrentToBestOneMutation extends Mutation {
 	
-	/** Scales the influence of the set of pairs of solutions
-	 *  selected to calculate the mutation value */
 	protected double F;
-	
-	public DERandOneMutation(double F) {
+
+	public DECurrentToBestOneMutation(double F) {
 		this.F = F;
 	}
 	
@@ -45,19 +43,31 @@ public class DERandOneMutation extends Mutation {
 	
 	@Override
 	public Solution execute(int targetId, Solution[] population) {
-		if (population == null || population.length < 4) {
-			throw new IllegalArgumentException("The population cannot be null or < 4");
+		if (population == null || population.length < 6) {
+			throw new IllegalArgumentException("The population cannot be null or < 6");
 		}
 		
 		List<Integer> pos = getRandomPositions(population.length);
 		
 		//Remove target solution's id
-		pos.remove(new Integer(targetId));		
+		pos.remove(new Integer(targetId));
+		
+		// Get the best element at population
+		Solution bestSolution = population[0];
+		
+		for(int i=0;i<population.length;i++){
+			if(population[i].getFitness() < bestSolution.getFitness()){
+				bestSolution = population[i];
+			}
+		}		
 		
 		Solution r1 = population[pos.get(0)];
 		Solution r2 = population[pos.get(1)];
-		Solution r3 = population[pos.get(2)];		
-
-		return r2.minus(r3).multiply(F).sum(r1);
+		Solution target = population[targetId];
+		
+		Solution term1 = bestSolution.minus(target).multiply(F);
+		Solution term2 = r2.minus(r1).multiply(F);
+		
+		return target.sum(term1).sum(term2);
 	}
 }

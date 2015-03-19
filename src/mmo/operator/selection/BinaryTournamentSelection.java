@@ -14,12 +14,31 @@
  * limitations under the License.
  */
 
-package mmo.operator.crossover;
+package mmo.operator.selection;
 
-import mmo.operator.Operator;
 import mmo.solution.Solution;
+import mmo.util.PseudoRandom;
 
-public abstract class Crossover extends Operator {
+public class BinaryTournamentSelection extends Selection {
 
-	public abstract Solution[] execute(Solution s1, Solution s2);
+	@Override
+	public Solution execute(Solution[] population) {
+		Solution s1 = population[PseudoRandom.randInt(0, population.length - 1)].clone();
+		Solution s2 = population[PseudoRandom.randInt(0, population.length - 1)].clone();
+
+		int flag = s1.compareTo(s2);
+
+		if (flag == -1) {
+			return s1;
+		} else if (flag == 1) {
+			return s2;
+		} else {
+			if (PseudoRandom.randDouble() <= 0.5) {
+				return s1;
+			} else {
+				return s2;
+			}
+		}
+	}
+
 }

@@ -14,12 +14,32 @@
  * limitations under the License.
  */
 
-package mmo.operator.crossover;
+package mmo.metaheuristic.single;
 
-import mmo.operator.Operator;
+import mmo.problem.Problem;
 import mmo.solution.Solution;
 
-public abstract class Crossover extends Operator {
+/**
+ * Random Search Metaheuristic
+ * 
+ * @author Thiago Nascimento
+ * @since 2015-03-17
+ * @version 1.0
+ */
+public class RandomSearch extends SingleSolution {
 
-	public abstract Solution[] execute(Solution s1, Solution s2);
+	@Override
+	public Solution solve(Problem p) {
+		Solution bestSolution = p.generateRandomSolution();
+
+		while (!terminationCondition()) {
+			Solution newSolution = p.generateRandomSolution();
+
+			if (p.evaluate(newSolution) < p.evaluate(bestSolution)) {
+				bestSolution = newSolution;
+			}
+		}
+
+		return bestSolution;
+	}
 }

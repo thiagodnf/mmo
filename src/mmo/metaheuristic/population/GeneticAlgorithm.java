@@ -51,10 +51,10 @@ public class GeneticAlgorithm extends PopulationBased {
 			// Mutation
 			offspring = doMutation(offspring);
 
+			evaluatePopulation(p, offspring);
+			
 			// Replacement
-			population = doReplacement(population, offspring);
-
-			evaluatePopulation(p, population);
+			population = doReplacement(population, offspring);		
 		}
 
 		return bestElement(population);
